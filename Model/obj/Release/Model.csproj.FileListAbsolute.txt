@@ -1,0 +1,10 @@
+C:\Users\Loadren\source\repos\WindowsFormsApp1\Model\bin\Release\Model.dll
+C:\Users\Loadren\source\repos\WindowsFormsApp1\Model\bin\Release\Model.pdb
+C:\Users\Loadren\source\repos\WindowsFormsApp1\Model\bin\Release\HtmlAgilityPack.dll
+C:\Users\Loadren\source\repos\WindowsFormsApp1\Model\bin\Release\HtmlAgilityPack.pdb
+C:\Users\Loadren\source\repos\WindowsFormsApp1\Model\bin\Release\HtmlAgilityPack.xml
+C:\Users\Loadren\source\repos\WindowsFormsApp1\Model\obj\Release\Model.csproj.CoreCompileInputs.cache
+C:\Users\Loadren\source\repos\WindowsFormsApp1\Model\obj\Release\Model.csproj.CopyComplete
+C:\Users\Loadren\source\repos\WindowsFormsApp1\Model\obj\Release\Model.dll
+C:\Users\Loadren\source\repos\WindowsFormsApp1\Model\obj\Release\Model.pdb
+C:\Users\Loadren\source\repos\WindowsFormsApp1\Model\obj\Release\Model.csprojAssemblyReference.cache
