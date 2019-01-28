@@ -49,7 +49,6 @@ namespace Model
             }
 
             string link = url + document.GetElementbyId("memberlist").LastChild.FirstChild.Elements("td").ToArray()[1].FirstChild.GetAttributeValue("href", "default") + "rpg";
-            Console.WriteLine(link);
             html = HttpGet(link);
             document = new HtmlDocument();
             document.LoadHtml(html);
@@ -107,7 +106,6 @@ namespace Model
 
             int criticLevel = 100 - criticPercent;
             total++;
-            Console.WriteLine(critpercent*100/total);
             if (roll >= criticLevel)
             {
                 critpercent++;

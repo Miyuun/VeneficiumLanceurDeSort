@@ -186,8 +186,7 @@ namespace WindowsFormsApp1
 
                 character_1.MagicPower = magic;
                 character_1.WillPower = will;
-                Protego protego1 = character_1.RollProtego(bonusam, bonusampercent);
-                character_1.ProtegoLifePoints = protego1.Power + (protego1.CritLevel == 2 ? protego1.Power : 0);
+                character_1.RollProtego(bonusam, bonusampercent);
                 rollresult.Visible = true;
                 if(protegoPoint1.Text != 0.ToString())
                 {
@@ -196,20 +195,20 @@ namespace WindowsFormsApp1
                 "Remplacer le Protego",
                 MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        protegoPoint1.Text = character_1.ProtegoLifePoints.ToString();
-                        if (protego1.CritLevel > 0)
-                            rollresult.Text = "Le Protego érigé par " + character_1.Name + " est actif et possède " + character_1.ProtegoLifePoints + " PV." + (protego1.CritLevel == 2 ? " (critique)" : null);
+                        protegoPoint1.Text = character_1.ProtegoActive.Power.ToString();
+                        if (character_1.ProtegoActive.CritLevel > 0)
+                            rollresult.Text = "Le Protego érigé par " + character_1.Name + " est actif et possède " + character_1.ProtegoActive.Power + " PV." + (character_1.ProtegoActive.CritLevel == 2 ? " (critique)" : null);
                         else
                             rollresult.Text = "Le Protego érigé par " + character_1.Name + " est un échec critique.";
                     }
                 }
                 else
                 {
-                    if (protego1.CritLevel > 0)
-                        rollresult.Text = "Le Protego érigé par " + character_1.Name + " est actif et possède " + character_1.ProtegoLifePoints + " PV." + (protego1.CritLevel == 2 ? " (critique)" : null);
+                    if (character_1.ProtegoActive.CritLevel > 0)
+                        rollresult.Text = "Le Protego érigé par " + character_1.Name + " est actif et possède " + character_1.ProtegoActive.Power + " PV." + (character_1.ProtegoActive.CritLevel == 2 ? " (critique)" : null);
                     else
                         rollresult.Text = "Le Protego érigé par " + character_1.Name + " est un échec critique.";
-                    protegoPoint1.Text = character_1.ProtegoLifePoints.ToString();
+                    protegoPoint1.Text = character_1.ProtegoActive.Power.ToString();
                 }
                 if (protegoPoint1.Text != 0.ToString())
                     attackprotego2.Enabled = true;
@@ -251,8 +250,7 @@ namespace WindowsFormsApp1
 
                 character_2.MagicPower = magic;
                 character_2.WillPower = will;
-                Protego protego2 = character_2.RollProtego(bonusam, bonusampercent);
-                character_2.ProtegoLifePoints = protego2.Power + (protego2.CritLevel == 2 ? protego2.Power : 0);
+                character_2.RollProtego(bonusam, bonusampercent);
                 rollresult.Visible = true;
                 if (protegoPoint2.Text != 0.ToString())
                 {
@@ -261,22 +259,21 @@ namespace WindowsFormsApp1
                 "Remplacer le Protego",
                 MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        protegoPoint2.Text = character_2.ProtegoLifePoints.ToString();
-                        if (protego2.CritLevel > 0)
-                            rollresult.Text = "Le Protego érigé par " + character_2.Name + " est actif et possède " + character_2.ProtegoLifePoints + " PV." + (protego2.CritLevel == 2 ? " (critique)" : null);
+                        protegoPoint2.Text = character_2.ProtegoActive.Power.ToString();
+                        if (character_2.ProtegoActive.CritLevel > 0)
+                            rollresult.Text = "Le Protego érigé par " + character_2.Name + " est actif et possède " + character_2.ProtegoActive.Power + " PV." + (character_2.ProtegoActive.CritLevel == 2 ? " (critique)" : null);
                         else
                             rollresult.Text = "Le Protego érigé par " + character_2.Name + " est un échec critique.";
                     }
                 }
                 else
                 {
-                    if (protego2.CritLevel > 0)
-                        rollresult.Text = "Le Protego érigé par " + character_2.Name + " est actif et possède " + character_2.ProtegoLifePoints + " PV." + (protego2.CritLevel == 2 ? " (critique)" : null);
+                    if (character_2.ProtegoActive.CritLevel > 0)
+                        rollresult.Text = "Le Protego érigé par " + character_2.Name + " est actif et possède " + character_2.ProtegoActive.Power + " PV." + (character_2.ProtegoActive.CritLevel == 2 ? " (critique)" : null);
                     else
                         rollresult.Text = "Le Protego érigé par " + character_2.Name + " est un échec critique.";
-                    protegoPoint2.Text = character_2.ProtegoLifePoints.ToString();
+                    protegoPoint2.Text = character_2.ProtegoActive.Power.ToString();
                 }
-
                 if (protegoPoint2.Text != 0.ToString())
                     attackprotego1.Enabled = true;
                 else
@@ -460,7 +457,7 @@ namespace WindowsFormsApp1
                 if (spell.PowerLevel > 1 && spell.AccuracyLevel)
                 {
                     protegoresult = character_1.AttackProtego(spell, character_2);
-                    protegoPoint2.Text = character_2.ProtegoLifePoints.ToString();
+                    protegoPoint2.Text = character_2.ProtegoActive.Power.ToString();
                 }
                 powerafterprotego1.Text = spell.Power.ToString();
                 rollresult.Text = character_1.MakeSentenceSpell(spell, protegoresult);
@@ -516,7 +513,7 @@ namespace WindowsFormsApp1
                 if (spell.PowerLevel > 1 && spell.AccuracyLevel)
                 {
                     protegoresult = character_2.AttackProtego(spell, character_1);
-                    protegoPoint1.Text = character_1.ProtegoLifePoints.ToString();
+                    protegoPoint1.Text = character_1.ProtegoActive.Power.ToString();
                 }
                 powerafterprotego2.Text = spell.Power.ToString();
                 rollresult.Text = character_2.MakeSentenceSpell(spell, protegoresult);

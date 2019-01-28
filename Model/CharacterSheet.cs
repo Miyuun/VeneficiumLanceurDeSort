@@ -12,14 +12,13 @@ namespace Model
         public string Name { get; set; }
         public int MagicPower { get; set; }
         public int WillPower { get; set; }
-        public int ProtegoLifePoints { get; set; }
+        public Protego ProtegoActive { get; set; }
 
         public CharacterSheet(string name, int magicPower, int willPower)
         {
             Name = name;
             MagicPower = magicPower;
             WillPower = willPower;
-            ProtegoLifePoints = 0;
         }
 
         public Spell RollSpell(int bonusam, int bonusampercent, int bonuswill, int bonuswillpercent)
@@ -115,37 +114,42 @@ namespace Model
             return sentence;
         }
 
-        public int AttackProtego(Spell spell, CharacterSheet character_2)
+        public int AttackProtego(Spell spell, CharacterSheet character)
         {
-            if(spell.Accuracy > character_2.ProtegoLifePoints)
+            if (spell.Accuracy > character.ProtegoActive.Power)
             {
-                spell.Power -= character_2.ProtegoLifePoints / 2;
-                character_2.ProtegoLifePoints = 0;
+                spell.Power -= character.ProtegoActive.Power / 2;
+                character.ProtegoActive.Power = 0;
                 return 0;
             }
             else
             {
-                character_2.ProtegoLifePoints -= spell.Accuracy / 2;
-                spell.Power = 0;
-                if ((character_2.ProtegoLifePoints-70) >= spell.Accuracy)
+                if ((character.ProtegoActive.Power - 70) >= spell.Accuracy && character.ProtegoActive.CritLevel < 2)
                 {
+                    character.ProtegoActive.Power -= spell.Accuracy / 2;
+                    spell.Power = 0;
                     return 2;
                 }
-                return 1;
+                else
+                {
+                    character.ProtegoActive.Power -= spell.Accuracy / 2;
+                    spell.Power = 0;
+                    return 1;
+                }
             }
         }
 
-        public Protego RollProtego(int bonus, int bonuspercent)
+        public void RollProtego(int bonus, int bonuspercent)
         {
             Random rand = new Random();
             int randNumber = rand.Next(1, 100);
             int randProtego = randNumber + MagicPower + bonus + (bonuspercent * MagicPower / 100);
             if (Model.isCrit(randNumber, WillPower))
-                return new Protego(randProtego, 2);
+                ProtegoActive = new Protego(randProtego*2, 2);
             else if (Model.isBadCrit(randNumber, WillPower))
-                return new Protego(0, 0);
+                ProtegoActive = new Protego(0, 0);
             else
-                return new Protego(randProtego, 1);
+                ProtegoActive = new Protego(randProtego, 1);
         }
     }
 

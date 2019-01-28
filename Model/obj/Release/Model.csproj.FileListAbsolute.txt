@@ -8,3 +8,13 @@ C:\Users\Loadren\source\repos\WindowsFormsApp1\Model\obj\Release\Model.csproj.Co
 C:\Users\Loadren\source\repos\WindowsFormsApp1\Model\obj\Release\Model.dll
 C:\Users\Loadren\source\repos\WindowsFormsApp1\Model\obj\Release\Model.pdb
 C:\Users\Loadren\source\repos\WindowsFormsApp1\Model\obj\Release\Model.csprojAssemblyReference.cache
+C:\Users\asebagh\Downloads\VeneficiumLanceurDeSort-master\VeneficiumLanceurDeSort-master\Model\bin\Release\Model.dll
+C:\Users\asebagh\Downloads\VeneficiumLanceurDeSort-master\VeneficiumLanceurDeSort-master\Model\bin\Release\Model.pdb
+C:\Users\asebagh\Downloads\VeneficiumLanceurDeSort-master\VeneficiumLanceurDeSort-master\Model\bin\Release\HtmlAgilityPack.dll
+C:\Users\asebagh\Downloads\VeneficiumLanceurDeSort-master\VeneficiumLanceurDeSort-master\Model\bin\Release\HtmlAgilityPack.pdb
+C:\Users\asebagh\Downloads\VeneficiumLanceurDeSort-master\VeneficiumLanceurDeSort-master\Model\bin\Release\HtmlAgilityPack.xml
+C:\Users\asebagh\Downloads\VeneficiumLanceurDeSort-master\VeneficiumLanceurDeSort-master\Model\obj\Release\Model.csprojAssemblyReference.cache
+C:\Users\asebagh\Downloads\VeneficiumLanceurDeSort-master\VeneficiumLanceurDeSort-master\Model\obj\Release\Model.csproj.CoreCompileInputs.cache
+C:\Users\asebagh\Downloads\VeneficiumLanceurDeSort-master\VeneficiumLanceurDeSort-master\Model\obj\Release\Model.csproj.CopyComplete
+C:\Users\asebagh\Downloads\VeneficiumLanceurDeSort-master\VeneficiumLanceurDeSort-master\Model\obj\Release\Model.dll
+C:\Users\asebagh\Downloads\VeneficiumLanceurDeSort-master\VeneficiumLanceurDeSort-master\Model\obj\Release\Model.pdb
