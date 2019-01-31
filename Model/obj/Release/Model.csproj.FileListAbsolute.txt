@@ -18,3 +18,13 @@ C:\Users\asebagh\Downloads\VeneficiumLanceurDeSort-master\VeneficiumLanceurDeSor
 C:\Users\asebagh\Downloads\VeneficiumLanceurDeSort-master\VeneficiumLanceurDeSort-master\Model\obj\Release\Model.csproj.CopyComplete
 C:\Users\asebagh\Downloads\VeneficiumLanceurDeSort-master\VeneficiumLanceurDeSort-master\Model\obj\Release\Model.dll
 C:\Users\asebagh\Downloads\VeneficiumLanceurDeSort-master\VeneficiumLanceurDeSort-master\Model\obj\Release\Model.pdb
+C:\Users\Loadren\Documents\VeneficiumLanceurDeSort\Model\bin\Release\Model.dll
+C:\Users\Loadren\Documents\VeneficiumLanceurDeSort\Model\bin\Release\Model.pdb
+C:\Users\Loadren\Documents\VeneficiumLanceurDeSort\Model\bin\Release\HtmlAgilityPack.dll
+C:\Users\Loadren\Documents\VeneficiumLanceurDeSort\Model\bin\Release\HtmlAgilityPack.pdb
+C:\Users\Loadren\Documents\VeneficiumLanceurDeSort\Model\bin\Release\HtmlAgilityPack.xml
+C:\Users\Loadren\Documents\VeneficiumLanceurDeSort\Model\obj\Release\Model.csprojAssemblyReference.cache
+C:\Users\Loadren\Documents\VeneficiumLanceurDeSort\Model\obj\Release\Model.csproj.CoreCompileInputs.cache
+C:\Users\Loadren\Documents\VeneficiumLanceurDeSort\Model\obj\Release\Model.csproj.CopyComplete
+C:\Users\Loadren\Documents\VeneficiumLanceurDeSort\Model\obj\Release\Model.dll
+C:\Users\Loadren\Documents\VeneficiumLanceurDeSort\Model\obj\Release\Model.pdb

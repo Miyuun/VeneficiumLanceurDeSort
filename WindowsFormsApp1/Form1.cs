@@ -175,13 +175,13 @@ namespace WindowsFormsApp1
                 && Int32.TryParse(bonusampercent1.Text, out bonusampercent)
                 && Int32.TryParse(bonuswillpercent1.Text, out bonuswillpercent))
             {
-                if ((string)comboboxam2.SelectedItem == "Malus")
+                if ((string)comboboxam1.SelectedItem == "Malus")
                     bonusam *= -1;
-                if ((string)comboboxwill2.SelectedItem == "Malus")
+                if ((string)comboboxwill1.SelectedItem == "Malus")
                     bonuswill *= -1;
-                if ((string)comboboxampercent2.SelectedItem == "Malus")
+                if ((string)comboboxampercent1.SelectedItem == "Malus")
                     bonusampercent *= -1;
-                if ((string)comboboxwillpercent2.SelectedItem == "Malus")
+                if ((string)comboboxwillpercent1.SelectedItem == "Malus")
                     bonuswillpercent *= -1;
 
                 character_1.MagicPower = magic;
@@ -247,6 +247,9 @@ namespace WindowsFormsApp1
                     bonusampercent *= -1;
                 if ((string)comboboxwillpercent2.SelectedItem == "Malus")
                     bonuswillpercent *= -1;
+
+                Console.WriteLine(bonusam);
+                Console.WriteLine(bonusampercent);
 
                 character_2.MagicPower = magic;
                 character_2.WillPower = will;

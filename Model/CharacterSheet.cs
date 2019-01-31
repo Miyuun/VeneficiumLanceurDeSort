@@ -25,7 +25,7 @@ namespace Model
         {
             Random rand = new Random();
             int randNumber = rand.Next(1, 100);
-            int randSpell = randNumber + WillPower + bonuswill + (bonuswillpercent * WillPower / 100);
+            int randSpell = (randNumber + WillPower + bonuswill) + (randNumber + WillPower + bonuswill) * bonuswillpercent/ 100;
             int powerLevel = 0;
             if(Model.isBadCrit(randNumber, WillPower))
             {
@@ -49,7 +49,7 @@ namespace Model
             }
 
             randNumber = rand.Next(1, 100);
-            int randAccuracy = randNumber +MagicPower + bonusam + (bonusampercent * MagicPower / 100);
+            int randAccuracy = (randNumber + MagicPower + bonusam) + (randNumber + MagicPower + bonusam) * bonusampercent  / 100;
             bool accuracyLevel = false;
             if (randAccuracy >= 50)
             {
@@ -143,7 +143,8 @@ namespace Model
         {
             Random rand = new Random();
             int randNumber = rand.Next(1, 100);
-            int randProtego = randNumber + MagicPower + bonus + (bonuspercent * MagicPower / 100);
+            Console.WriteLine(bonuspercent);
+            int randProtego = (randNumber + MagicPower + bonus) + (randNumber + MagicPower + bonus) * bonuspercent / 100;
             if (Model.isCrit(randNumber, WillPower))
                 ProtegoActive = new Protego(randProtego*2, 2);
             else if (Model.isBadCrit(randNumber, WillPower))
