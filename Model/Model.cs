@@ -41,25 +41,33 @@ namespace Model
             document.LoadHtml(html);
 
 
-            if(document.GetElementbyId("#i_icon_mini_login") != null)
+            if (document.GetElementbyId("i_icon_mini_login") != null)
             {
                 await connectAsync();
                 CharacterSheet sheet = await requestAsync(name);
                 return sheet;
             }
 
-            string link = url + document.GetElementbyId("memberlist").LastChild.FirstChild.Elements("td").ToArray()[1].FirstChild.GetAttributeValue("href", "default") + "rpg";
+            if (document.GetElementbyId("LMBER") == null)
+            {
+                return new CharacterSheet("Pas de fiche trouvée", 0, 0);
+            }
+
+            string link = url + document.GetElementbyId("LMBER").FirstChild.Elements("div").ToArray()[0].FirstChild.GetAttributeValue("href", "default");
             html = HttpGet(link);
             document = new HtmlDocument();
             document.LoadHtml(html);
 
-            string characterName = document.GetElementbyId("main-content").Element("h1").Element("span").FirstChild.InnerHtml;
-            if(document.DocumentNode.SelectNodes("//span[@class='gen']")[0].InnerHtml != "Ce membre n'a pas activé sa feuille de personnage." && document.DocumentNode.SelectNodes("//span[@class='gen']")[0].InnerHtml != "Ce membre n'a pas activ\u00E9 sa feuille de personnage.<br><br>Souhaitez vous g\u00E9n\u00E9rer la feuille de personnage de ce membre ?<br><form method=\"post\" action=\"/u627rpgsheet?mode=generate\"><input type=\"submit\" value=\"G\u00E9n\u00E9rer\"></form>")
+            string characterName = document.GetElementbyId("main-content").Elements("table").ToArray()[0].FirstChild.FirstChild.FirstChild.FirstChild.InnerHtml;
+            if (document.GetElementbyId("main-content").Elements("table").ToArray()[0].FirstChild.Elements("div").ToArray()[3].LastChild.InnerHtml != "Ce membre n'a pas activé sa feuille de personnage." && document.GetElementbyId("main-content").Elements("table").ToArray()[0].FirstChild.Elements("div").ToArray()[3].LastChild.InnerHtml != "Ce membre n'a pas activ\u00E9 sa feuille de personnage.<br><br>Souhaitez vous g\u00E9n\u00E9rer la feuille de personnage de ce membre ?<br><form method=\"post\" action=\"/u627rpgsheet?mode=generate\"><input type=\"submit\" value=\"G\u00E9n\u00E9rer\"></form>")
             {
-                string magic = document.GetElementbyId("cp-main").Element("div").FirstChild.Elements("div").ToArray()[0].FirstChild.Element("dd").Element("span").InnerHtml;
+                string magicTest = document.GetElementbyId("main-content").InnerHtml;
+                string magic = document.GetElementbyId("main-content").Elements("table").ToArray()[0].FirstChild.Elements("div").ToArray()[3].Elements("span").ToArray()[1].InnerHtml;
                 magic = magic.Substring(magic.IndexOf("(") + 1, magic.IndexOf("/") - 1);
-                string volonte = document.GetElementbyId("cp-main").Element("div").FirstChild.Elements("div").ToArray()[1].FirstChild.Element("dd").Element("span").InnerHtml;
+                Console.WriteLine(magic);
+                string volonte = document.GetElementbyId("main-content").Elements("table").ToArray()[0].FirstChild.Elements("div").ToArray()[3].Elements("span").ToArray()[3].InnerHtml;
                 volonte = volonte.Substring(volonte.IndexOf("(") + 1, volonte.IndexOf("/") - 1);
+                Console.WriteLine(volonte);
                 return new CharacterSheet(characterName, Int32.Parse(magic), Int32.Parse(volonte));
             }
             else

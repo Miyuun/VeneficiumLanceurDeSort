@@ -21,7 +21,7 @@ namespace Model
             WillPower = willPower;
         }
 
-        public Spell RollSpell(int bonusam, int bonusampercent, int bonuswill, int bonuswillpercent)
+        public Spell RollSpell(int bonusam, int bonusampercent, int bonuswill, int bonuswillpercent, Boolean Visee = false)
         {
             Random rand = new Random();
             int randNumber = rand.Next(1, 100);
@@ -49,7 +49,15 @@ namespace Model
             }
 
             randNumber = rand.Next(1, 100);
-            int randAccuracy = (randNumber + MagicPower + bonusam) + (randNumber + MagicPower + bonusam) * bonusampercent  / 100;
+            int randAccuracy = 0;
+            if (Visee)
+            {
+                randAccuracy = randNumber + MagicPower;
+            }
+            else
+            {
+                randAccuracy = (randNumber + MagicPower + bonusam) + (randNumber + MagicPower + bonusam) * bonusampercent / 100;
+            }
             bool accuracyLevel = false;
             if (randAccuracy >= 50)
             {
@@ -70,13 +78,16 @@ namespace Model
             {
                 sentence += " rate (critique) son sort.";
             }
-            else if(spell.PowerLevel == 1)
+            else if (spell.PowerLevel == 2 || spell.PowerLevel == 1)
             {
-                sentence += " rate son sort.";
-            }
-            else if (spell.PowerLevel == 2)
-            {
-                sentence += " réussit son sort ";
+                if(spell.PowerLevel == 1)
+                {
+                    sentence += " réussit (inférieur) son sort ";
+                }
+                else
+                {
+                    sentence += " réussit son sort ";
+                }
                 if (spell.AccuracyLevel)
                 {
                     sentence += "et touche sa cible.";

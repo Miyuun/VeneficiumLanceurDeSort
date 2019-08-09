@@ -103,7 +103,7 @@ namespace WindowsFormsApp1
 
                 character_1.MagicPower = magic;
                 character_1.WillPower = will;
-                Spell spell = character_1.RollSpell(bonusam, bonusampercent, bonuswill, bonuswillpercent);
+                Spell spell = character_1.RollSpell(bonusam, bonusampercent, bonuswill, bonuswillpercent, checkBoxVisee1.Checked);
                 power1.Text = spell.Power.ToString();
                 accuracy1.Text = spell.Accuracy.ToString();
                 rollresult.Visible = true;
@@ -145,7 +145,7 @@ namespace WindowsFormsApp1
 
                 character_2.MagicPower = magic;
                 character_2.WillPower = will;
-                Spell spell = character_2.RollSpell(bonusam, bonusampercent, bonuswill, bonuswillpercent);
+                Spell spell = character_2.RollSpell(bonusam, bonusampercent, bonuswill, bonuswillpercent, checkBoxVisee2.Checked);
                 power2.Text = spell.Power.ToString();
                 accuracy2.Text = spell.Accuracy.ToString();
                 rollresult.Visible = true;
@@ -341,6 +341,7 @@ namespace WindowsFormsApp1
                 removeprotego2.Visible = true;
                 powerafterroll.Visible = true;
                 powerafterprotego2.Visible = true;
+                checkBoxVisee2.Visible = true;
             }
         }
 
@@ -397,6 +398,7 @@ namespace WindowsFormsApp1
                 removeprotego1.Visible = true;
                 powerafterroll.Visible = true;
                 powerafterprotego1.Visible = true;
+                checkBoxVisee1.Visible = true;
             }
         }
 
@@ -452,12 +454,12 @@ namespace WindowsFormsApp1
 
                 character_1.MagicPower = magic;
                 character_1.WillPower = will;
-                Spell spell = character_1.RollSpell(bonusam, bonusampercent,  bonuswill, bonuswillpercent);
+                Spell spell = character_1.RollSpell(bonusam, bonusampercent,  bonuswill, bonuswillpercent, checkBoxVisee1.Checked);
                 power1.Text = spell.Power.ToString();
                 accuracy1.Text = spell.Accuracy.ToString();
                 rollresult.Visible = true;
                 int protegoresult = -1;
-                if (spell.PowerLevel > 1 && spell.AccuracyLevel)
+                if (spell.PowerLevel > 0 && spell.AccuracyLevel)
                 {
                     protegoresult = character_1.AttackProtego(spell, character_2);
                     protegoPoint2.Text = character_2.ProtegoActive.Power.ToString();
@@ -508,7 +510,7 @@ namespace WindowsFormsApp1
 
                 character_2.MagicPower = magic;
                 character_2.WillPower = will;
-                Spell spell = character_2.RollSpell(bonusam, bonusampercent, bonuswill, bonuswillpercent);
+                Spell spell = character_2.RollSpell(bonusam, bonusampercent, bonuswill, bonuswillpercent, checkBoxVisee2.Checked);
                 power2.Text = spell.Power.ToString();
                 accuracy2.Text = spell.Accuracy.ToString();
                 rollresult.Visible = true;
@@ -550,6 +552,11 @@ namespace WindowsFormsApp1
                 attackprotego1.Enabled = true;
             else
                 attackprotego1.Enabled = false;
+        }
+
+        private void CheckBox2_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
