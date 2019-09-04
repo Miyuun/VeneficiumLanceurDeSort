@@ -81,19 +81,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -115,6 +115,22 @@
   <ItemGroup>
     <Content Include="RA5HS0v.ico" />
     <Content Include="Resources\protego.png" />
+    <None Include="Resources\wizardprotegoleft.gif" />
+    <None Include="Resources\wizardprotegoright.gif" />
+    <None Include="Resources\wizardprotegostandleft.gif" />
+    <None Include="Resources\wizardprotegostandright.gif" />
+    <None Include="Resources\wizardprotegostopleft.gif" />
+    <None Include="Resources\wizardprotegostopright.gif" />
+    <Content Include="Resources\wizardspellinprotegoleft.gif" />
+    <Content Include="Resources\wizardspellinprotegoright.gif" />
+    <None Include="Resources\wizardspellleft.gif" />
+    <None Include="Resources\wizardspellright.gif" />
+    <Content Include="Resources\wizardstandingleft.png" />
+    <None Include="Resources\wizardstandingright.png" />
+    <Content Include="Resources\wizard\wizardprotegoleft.gif" />
+    <Content Include="Resources\wizard\wizardprotegoright.gif" />
+    <Content Include="Resources\wizard\wizardprotegostandleft.gif" />
+    <Content Include="Resources\wizard\wizardprotegostandright.gif" />
     <None Include="Resources\protego1.png" />
   </ItemGroup>
   <ItemGroup>

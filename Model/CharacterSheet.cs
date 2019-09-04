@@ -21,7 +21,7 @@ namespace Model
             WillPower = willPower;
         }
 
-        public Spell RollSpell(int bonusam, int bonusampercent, int bonuswill, int bonuswillpercent, Boolean Visee = false)
+        public Spell RollSpell(int bonusam, int bonusampercent, int bonuswill, int bonuswillpercent, int bonusvisee, int bonusviseepercent)
         {
             Random rand = new Random();
             int randNumber = rand.Next(1, 100);
@@ -50,14 +50,7 @@ namespace Model
 
             randNumber = rand.Next(1, 100);
             int randAccuracy = 0;
-            if (Visee)
-            {
-                randAccuracy = randNumber + MagicPower;
-            }
-            else
-            {
-                randAccuracy = (randNumber + MagicPower + bonusam) + (randNumber + MagicPower + bonusam) * bonusampercent / 100;
-            }
+            randAccuracy = (randNumber + MagicPower + bonusam + bonusvisee) + (randNumber + MagicPower + bonusam) * bonusampercent / 100 + (randNumber + MagicPower + bonusvisee) * bonusviseepercent / 100;
             bool accuracyLevel = false;
             if (randAccuracy >= 50)
             {
@@ -66,6 +59,16 @@ namespace Model
             else
             {
                 accuracyLevel = false;
+            }
+
+            if (randSpell < 0)
+            {
+                randSpell = 0;
+            }
+
+            if (randAccuracy < 0)
+            {
+                randAccuracy = 0;
             }
 
             return new Spell(randAccuracy, randSpell, accuracyLevel, powerLevel);
@@ -135,7 +138,7 @@ namespace Model
             }
             else
             {
-                if ((character.ProtegoActive.Power - 70) >= spell.Accuracy && character.ProtegoActive.CritLevel < 2)
+                if ((character.ProtegoActive.Power - 70) >= spell.Accuracy && character.ProtegoActive.CritLevel < 1)
                 {
                     character.ProtegoActive.Power -= spell.Accuracy / 2;
                     spell.Power = 0;

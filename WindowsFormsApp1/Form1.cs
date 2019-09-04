@@ -16,6 +16,19 @@ namespace WindowsFormsApp1
         CharacterSheet character_1 = null;
         CharacterSheet character_2 = null;
 
+        Image wizardstandingleft = Properties.Resources.wizardstandingleft;
+        Image wizardstandingright = Properties.Resources.wizardstandingright;
+        Image wizardprotegoleft = Properties.Resources.wizardprotegoleft;
+        Image wizardprotegoright = Properties.Resources.wizardprotegoright;
+        Image wizardprotegostandleft = Properties.Resources.wizardprotegostandleft;
+        Image wizardprotegostandright = Properties.Resources.wizardprotegostandright;
+        Image wizardprotegostopleft = Properties.Resources.wizardprotegostopleft;
+        Image wizardprotegostopright = Properties.Resources.wizardprotegostopright;
+        Image wizardspellleft = Properties.Resources.wizardspellleft;
+        Image wizardspellright = Properties.Resources.wizardspellright;
+        Image wizardspellinprotegoleft = Properties.Resources.wizardspellinprotegoleft;
+        Image wizardspellinprotegoright = Properties.Resources.wizardspellinprotegoright;
+
         public Form1()
         {
             InitializeComponent();
@@ -82,6 +95,8 @@ namespace WindowsFormsApp1
             int bonuswill;
             int bonusampercent;
             int bonuswillpercent;
+            int bonusvisee;
+            int bonusviseepercent;
             if (character_1.Name != ""
                 && character_1.MagicPower > 0
                 && character_1.WillPower > 0
@@ -90,7 +105,9 @@ namespace WindowsFormsApp1
                 && Int32.TryParse(bonusam1.Text, out bonusam)
                 && Int32.TryParse(bonuswill1.Text, out bonuswill)
                 && Int32.TryParse(bonusampercent1.Text, out bonusampercent)
-                && Int32.TryParse(bonuswillpercent1.Text, out bonuswillpercent))
+                && Int32.TryParse(bonuswillpercent1.Text, out bonuswillpercent)
+                && Int32.TryParse(textBoxVisee1.Text, out bonusvisee)
+                && Int32.TryParse(textBoxVisee1PC.Text, out bonusviseepercent))
             {
                 if ((string)comboboxam1.SelectedItem == "Malus")
                     bonusam *= -1;
@@ -100,10 +117,14 @@ namespace WindowsFormsApp1
                     bonusampercent *= -1;
                 if ((string)comboboxwillpercent1.SelectedItem == "Malus")
                     bonuswillpercent *= -1;
+                if ((string)comboBoxVisee1.SelectedItem == "Malus")
+                    bonusvisee *= -1;
+                if ((string)comboBoxVisee1PC.SelectedItem == "Malus")
+                    bonusviseepercent *= -1;
 
                 character_1.MagicPower = magic;
                 character_1.WillPower = will;
-                Spell spell = character_1.RollSpell(bonusam, bonusampercent, bonuswill, bonuswillpercent, checkBoxVisee1.Checked);
+                Spell spell = character_1.RollSpell(bonusam, bonusampercent, bonuswill, bonuswillpercent, bonusvisee, bonusviseepercent);
                 power1.Text = spell.Power.ToString();
                 accuracy1.Text = spell.Accuracy.ToString();
                 rollresult.Visible = true;
@@ -123,6 +144,8 @@ namespace WindowsFormsApp1
             int bonuswill;
             int bonusampercent;
             int bonuswillpercent;
+            int bonusvisee;
+            int bonusviseepercent;
             if (character_2.Name != ""
                 && character_2.MagicPower > 0
                 && character_2.WillPower > 0
@@ -131,7 +154,9 @@ namespace WindowsFormsApp1
                 && Int32.TryParse(bonusam2.Text, out bonusam)
                 && Int32.TryParse(bonuswill2.Text, out bonuswill)
                 && Int32.TryParse(bonusampercent2.Text, out bonusampercent)
-                && Int32.TryParse(bonuswillpercent2.Text, out bonuswillpercent))
+                && Int32.TryParse(bonuswillpercent2.Text, out bonuswillpercent)
+                && Int32.TryParse(textBoxVisee2.Text, out bonusvisee)
+                && Int32.TryParse(textBoxVisee2PC.Text, out bonusviseepercent))
             {
 
                 if ((string)comboboxam2.SelectedItem == "Malus")
@@ -142,10 +167,14 @@ namespace WindowsFormsApp1
                     bonusampercent *= -1;
                 if ((string)comboboxwillpercent2.SelectedItem == "Malus")
                     bonuswillpercent *= -1;
+                if ((string)comboBoxVisee2.SelectedItem == "Malus")
+                    bonusvisee *= -1;
+                if ((string)comboBoxVisee2PC.SelectedItem == "Malus")
+                    bonusviseepercent *= -1;
 
                 character_2.MagicPower = magic;
                 character_2.WillPower = will;
-                Spell spell = character_2.RollSpell(bonusam, bonusampercent, bonuswill, bonuswillpercent, checkBoxVisee2.Checked);
+                Spell spell = character_2.RollSpell(bonusam, bonusampercent, bonuswill, bonuswillpercent, bonusvisee, bonusviseepercent);
                 power2.Text = spell.Power.ToString();
                 accuracy2.Text = spell.Accuracy.ToString();
                 rollresult.Visible = true;
@@ -184,6 +213,12 @@ namespace WindowsFormsApp1
                 if ((string)comboboxwillpercent1.SelectedItem == "Malus")
                     bonuswillpercent *= -1;
 
+                async Task UseDelay(int num, Image image)
+                {
+                    await Task.Delay(num); // wait for 1 second
+                    pictureBoxAnim1.Image = image;
+                }
+
                 character_1.MagicPower = magic;
                 character_1.WillPower = will;
                 character_1.RollProtego(bonusam, bonusampercent);
@@ -195,19 +230,49 @@ namespace WindowsFormsApp1
                 "Remplacer le Protego",
                 MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        protegoPoint1.Text = character_1.ProtegoActive.Power.ToString();
+                        protegoPoint1.Text = character_2.ProtegoActive.Power.ToString();
                         if (character_1.ProtegoActive.CritLevel > 0)
+                        {
                             rollresult.Text = "Le Protego érigé par " + character_1.Name + " est actif et possède " + character_1.ProtegoActive.Power + " PV." + (character_1.ProtegoActive.CritLevel == 2 ? " (critique)" : null);
+                            pictureBoxAnim1.Image = wizardprotegoleft;
+                            UseDelay(2100, wizardprotegostandleft);
+                        }
                         else
+                        {
                             rollresult.Text = "Le Protego érigé par " + character_1.Name + " est un échec critique.";
+                            if (character_1.ProtegoActive.Power > 0)
+                            {
+                                pictureBoxAnim1.Image = wizardprotegostopleft;
+                                UseDelay(2100, wizardstandingleft);
+                            }
+                            else
+                            {
+                                pictureBoxAnim1.Image = wizardstandingleft;
+                            }
+                        }
                     }
                 }
                 else
                 {
                     if (character_1.ProtegoActive.CritLevel > 0)
+                    {
                         rollresult.Text = "Le Protego érigé par " + character_1.Name + " est actif et possède " + character_1.ProtegoActive.Power + " PV." + (character_1.ProtegoActive.CritLevel == 2 ? " (critique)" : null);
+                        pictureBoxAnim1.Image = wizardprotegoleft;
+                        UseDelay(2100, wizardprotegostandleft);
+                    }
                     else
+                    {
                         rollresult.Text = "Le Protego érigé par " + character_1.Name + " est un échec critique.";
+                        if (character_1.ProtegoActive.Power > 0)
+                        {
+                            pictureBoxAnim1.Image = wizardprotegostopleft;
+                            UseDelay(2100, wizardstandingleft);
+                        }
+                        else
+                        {
+                            pictureBoxAnim1.Image = wizardstandingleft;
+                        }
+                    }
                     protegoPoint1.Text = character_1.ProtegoActive.Power.ToString();
                 }
                 if (protegoPoint1.Text != 0.ToString())
@@ -248,8 +313,11 @@ namespace WindowsFormsApp1
                 if ((string)comboboxwillpercent2.SelectedItem == "Malus")
                     bonuswillpercent *= -1;
 
-                Console.WriteLine(bonusam);
-                Console.WriteLine(bonusampercent);
+                async Task UseDelay(int num, Image image)
+                {
+                    await Task.Delay(num); // wait for 1 second
+                    pictureBoxAnim2.Image = image;
+                }
 
                 character_2.MagicPower = magic;
                 character_2.WillPower = will;
@@ -264,17 +332,47 @@ namespace WindowsFormsApp1
                     {
                         protegoPoint2.Text = character_2.ProtegoActive.Power.ToString();
                         if (character_2.ProtegoActive.CritLevel > 0)
+                        {
                             rollresult.Text = "Le Protego érigé par " + character_2.Name + " est actif et possède " + character_2.ProtegoActive.Power + " PV." + (character_2.ProtegoActive.CritLevel == 2 ? " (critique)" : null);
+                            pictureBoxAnim2.Image = wizardprotegoright;
+                            UseDelay(2100, wizardprotegostandright);
+                        }
                         else
+                        {
                             rollresult.Text = "Le Protego érigé par " + character_2.Name + " est un échec critique.";
+                            if(character_2.ProtegoActive.Power > 0)
+                            {
+                                pictureBoxAnim2.Image = wizardprotegostopright;
+                                UseDelay(2100, wizardstandingleft);
+                            }
+                            else
+                            {
+                                pictureBoxAnim2.Image = wizardstandingleft;
+                            }
+                        }
                     }
                 }
                 else
                 {
                     if (character_2.ProtegoActive.CritLevel > 0)
+                    {
                         rollresult.Text = "Le Protego érigé par " + character_2.Name + " est actif et possède " + character_2.ProtegoActive.Power + " PV." + (character_2.ProtegoActive.CritLevel == 2 ? " (critique)" : null);
+                        pictureBoxAnim2.Image = wizardprotegoright;
+                        UseDelay(2100, wizardprotegostandright);
+                    }
                     else
+                    {
                         rollresult.Text = "Le Protego érigé par " + character_2.Name + " est un échec critique.";
+                        if (character_2.ProtegoActive.Power > 0)
+                        {
+                            pictureBoxAnim2.Image = wizardprotegostopright;
+                            UseDelay(2100, wizardstandingleft);
+                        }
+                        else
+                        {
+                            pictureBoxAnim2.Image = wizardstandingleft;
+                        }
+                    }
                     protegoPoint2.Text = character_2.ProtegoActive.Power.ToString();
                 }
                 if (protegoPoint2.Text != 0.ToString())
@@ -317,6 +415,8 @@ namespace WindowsFormsApp1
                 comboboxampercent2.SelectedItem = "Bonus";
                 comboboxwill2.SelectedItem = "Bonus";
                 comboboxam2.SelectedItem = "Bonus";
+                comboBoxVisee2.SelectedItem = "Bonus";
+                comboBoxVisee2PC.SelectedItem = "Bonus";
                 comboboxwillpercent2.Visible = true;
                 comboboxampercent2.Visible = true;
                 comboboxwill2.Visible = true;
@@ -341,7 +441,17 @@ namespace WindowsFormsApp1
                 removeprotego2.Visible = true;
                 powerafterroll.Visible = true;
                 powerafterprotego2.Visible = true;
-                checkBoxVisee2.Visible = true;
+                textBoxVisee2.Visible = true;
+                textBoxVisee2PC.Visible = true;
+                comboBoxVisee2.Visible = true;
+                comboBoxVisee2PC.Visible = true;
+                labelVisee2.Visible = true;
+                labelVisee2PC.Visible = true;
+                labelVisee2PC1.Visible = true;
+                textBoxVisee2.Text = "0";
+                textBoxVisee2PC.Text = "0";
+                buttonModif2.Visible = true;
+                pictureBoxAnim2.Visible = true;
             }
         }
 
@@ -374,6 +484,8 @@ namespace WindowsFormsApp1
                 comboboxampercent1.SelectedItem = "Bonus";
                 comboboxwill1.SelectedItem = "Bonus";
                 comboboxam1.SelectedItem = "Bonus";
+                comboBoxVisee1.SelectedItem = "Bonus";
+                comboBoxVisee1PC.SelectedItem = "Bonus";
                 comboboxwillpercent1.Visible = true;
                 comboboxampercent1.Visible = true;
                 comboboxwill1.Visible = true;
@@ -398,7 +510,17 @@ namespace WindowsFormsApp1
                 removeprotego1.Visible = true;
                 powerafterroll.Visible = true;
                 powerafterprotego1.Visible = true;
-                checkBoxVisee1.Visible = true;
+                textBoxVisee1.Visible = true;
+                textBoxVisee1PC.Visible = true;
+                comboBoxVisee1.Visible = true;
+                comboBoxVisee1PC.Visible = true;
+                labelVisee1.Visible = true;
+                labelVisee1PC.Visible = true;
+                labelVisee1PC1.Visible = true;
+                textBoxVisee1.Text = "0";
+                textBoxVisee1PC.Text = "0";
+                buttonModif1.Visible = true;
+                pictureBoxAnim1.Visible = true;
             }
         }
 
@@ -432,6 +554,8 @@ namespace WindowsFormsApp1
             int bonuswill;
             int bonusampercent;
             int bonuswillpercent;
+            int bonusvisee;
+            int bonusviseepercent;
             if (character_1.Name != ""
                 && character_1.MagicPower > 0
                 && character_1.WillPower > 0
@@ -441,6 +565,8 @@ namespace WindowsFormsApp1
                 && Int32.TryParse(bonuswill1.Text, out bonuswill)
                 && Int32.TryParse(bonusampercent1.Text, out bonusampercent)
                 && Int32.TryParse(bonuswillpercent1.Text, out bonuswillpercent)
+                && Int32.TryParse(textBoxVisee1.Text, out bonusvisee)
+                && Int32.TryParse(textBoxVisee1PC.Text, out bonusviseepercent)
                 && protegoPoint2.Text != 0.ToString())
             {
                 if ((string)comboboxam1.SelectedItem == "Malus")
@@ -451,10 +577,20 @@ namespace WindowsFormsApp1
                     bonusampercent *= -1;
                 if ((string)comboboxwillpercent1.SelectedItem == "Malus")
                     bonuswillpercent *= -1;
+                if ((string)comboBoxVisee1.SelectedItem == "Malus")
+                    bonusvisee *= -1;
+                if ((string)comboBoxVisee1PC.SelectedItem == "Malus")
+                    bonusviseepercent *= -1;
+
+                async Task UseDelay(int num, Image image, PictureBox pict)
+                {
+                    await Task.Delay(num); // wait for 1 second
+                    pict.Image = image;
+                }
 
                 character_1.MagicPower = magic;
                 character_1.WillPower = will;
-                Spell spell = character_1.RollSpell(bonusam, bonusampercent,  bonuswill, bonuswillpercent, checkBoxVisee1.Checked);
+                Spell spell = character_1.RollSpell(bonusam, bonusampercent,  bonuswill, bonuswillpercent, bonusvisee, bonusviseepercent);
                 power1.Text = spell.Power.ToString();
                 accuracy1.Text = spell.Accuracy.ToString();
                 rollresult.Visible = true;
@@ -463,13 +599,35 @@ namespace WindowsFormsApp1
                 {
                     protegoresult = character_1.AttackProtego(spell, character_2);
                     protegoPoint2.Text = character_2.ProtegoActive.Power.ToString();
+                    if(character_1.ProtegoActive.Power > 0)
+                    {
+                        pictureBoxAnim1.Image = wizardspellinprotegoleft;
+                        UseDelay(6000, wizardprotegostandleft, pictureBoxAnim1);
+                    }
+                    else
+                    {
+                        pictureBoxAnim1.Image = wizardspellleft;
+                        UseDelay(2700, wizardstandingleft, pictureBoxAnim1);
+                    }
                 }
                 powerafterprotego1.Text = spell.Power.ToString();
                 rollresult.Text = character_1.MakeSentenceSpell(spell, protegoresult);
                 if (protegoPoint2.Text != 0.ToString())
                     attackprotego1.Enabled = true;
                 else
+                {
+                    if (character_1.ProtegoActive.Power > 0)
+                    {
+                        UseDelay(1700, wizardprotegostopright, pictureBoxAnim2);
+                        UseDelay(3090, wizardstandingright, pictureBoxAnim2);
+                    }
+                    else
+                    {
+                        UseDelay(1000, wizardprotegostopright, pictureBoxAnim2);
+                        UseDelay(2390, wizardstandingright, pictureBoxAnim2);
+                    }
                     attackprotego1.Enabled = false;
+                }
             }
             else
             {
@@ -488,6 +646,8 @@ namespace WindowsFormsApp1
             int bonuswill;
             int bonusampercent;
             int bonuswillpercent;
+            int bonusvisee;
+            int bonusviseepercent;
             if (character_2.Name != ""
                 && character_2.MagicPower > 0
                 && character_2.WillPower > 0
@@ -497,6 +657,8 @@ namespace WindowsFormsApp1
                 && Int32.TryParse(bonuswill2.Text, out bonuswill)
                 && Int32.TryParse(bonusampercent2.Text, out bonusampercent)
                 && Int32.TryParse(bonuswillpercent2.Text, out bonuswillpercent)
+                && Int32.TryParse(textBoxVisee2.Text, out bonusvisee)
+                && Int32.TryParse(textBoxVisee2PC.Text, out bonusviseepercent)
                 && protegoPoint1.Text != 0.ToString())
             {
                 if ((string)comboboxam2.SelectedItem == "Malus")
@@ -507,25 +669,57 @@ namespace WindowsFormsApp1
                     bonusampercent *= -1;
                 if ((string)comboboxwillpercent2.SelectedItem == "Malus")
                     bonuswillpercent *= -1;
+                if ((string)comboBoxVisee2.SelectedItem == "Malus")
+                    bonusvisee *= -1;
+                if ((string)comboBoxVisee2PC.SelectedItem == "Malus")
+                    bonusviseepercent *= -1;
+
+                async Task UseDelay(int num, Image image, PictureBox pict)
+                {
+                    await Task.Delay(num); // wait for 1 second
+                    pict.Image = image;
+                }
 
                 character_2.MagicPower = magic;
                 character_2.WillPower = will;
-                Spell spell = character_2.RollSpell(bonusam, bonusampercent, bonuswill, bonuswillpercent, checkBoxVisee2.Checked);
+                Spell spell = character_2.RollSpell(bonusam, bonusampercent, bonuswill, bonuswillpercent, bonusvisee, bonusviseepercent);
                 power2.Text = spell.Power.ToString();
                 accuracy2.Text = spell.Accuracy.ToString();
                 rollresult.Visible = true;
                 int protegoresult = -1;
-                if (spell.PowerLevel > 1 && spell.AccuracyLevel)
+                if (spell.PowerLevel > 0 && spell.AccuracyLevel)
                 {
                     protegoresult = character_2.AttackProtego(spell, character_1);
                     protegoPoint1.Text = character_1.ProtegoActive.Power.ToString();
+                    if (character_2.ProtegoActive.Power > 0)
+                    {
+                        pictureBoxAnim2.Image = wizardspellinprotegoright;
+                        UseDelay(6000, wizardprotegostandright, pictureBoxAnim2);
+                    }
+                    else
+                    {
+                        pictureBoxAnim2.Image = wizardspellright;
+                        UseDelay(2700, wizardstandingright, pictureBoxAnim2);
+                    }
                 }
                 powerafterprotego2.Text = spell.Power.ToString();
                 rollresult.Text = character_2.MakeSentenceSpell(spell, protegoresult);
                 if (protegoPoint1.Text != 0.ToString())
                     attackprotego2.Enabled = true;
                 else
+                {
+                    if (character_2.ProtegoActive.Power > 0)
+                    {
+                        UseDelay(1700, wizardprotegostopleft, pictureBoxAnim1);
+                        UseDelay(3090, wizardstandingleft, pictureBoxAnim1);
+                    }
+                    else
+                    {
+                        UseDelay(1000, wizardprotegostopleft, pictureBoxAnim1);
+                        UseDelay(2390, wizardstandingleft, pictureBoxAnim1);
+                    }
                     attackprotego2.Enabled = false;
+                }
             }
             else
             {
@@ -557,6 +751,50 @@ namespace WindowsFormsApp1
         private void CheckBox2_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PictureBoxAnim1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonModif1_Click(object sender, EventArgs e)
+        {
+            bonusam1.Text = "0";
+            bonuswill1.Text = "0";
+            comboboxwillpercent1.SelectedItem = "Bonus";
+            comboboxampercent1.SelectedItem = "Bonus";
+            comboboxwill1.SelectedItem = "Bonus";
+            comboboxam1.SelectedItem = "Bonus";
+            comboBoxVisee1.SelectedItem = "Bonus";
+            comboBoxVisee1PC.SelectedItem = "Bonus";
+            bonusampercent1.Text = "0";
+            bonuswillpercent1.Text = "0";
+            protegoPoint1.Text = "0";
+            textBoxVisee1.Text = "0";
+            textBoxVisee1PC.Text = "0";
+        }
+
+        private void ButtonModif2_Click(object sender, EventArgs e)
+        {
+                        bonusam2.Text = "0";
+            bonuswill2.Text = "0";
+            comboboxwillpercent2.SelectedItem = "Bonus";
+            comboboxampercent2.SelectedItem = "Bonus";
+            comboboxwill2.SelectedItem = "Bonus";
+            comboboxam2.SelectedItem = "Bonus";
+            comboBoxVisee2.SelectedItem = "Bonus";
+            comboBoxVisee2PC.SelectedItem = "Bonus";
+            bonusampercent2.Text = "0";
+            bonuswillpercent2.Text = "0";
+            protegoPoint2.Text = "0";
+            textBoxVisee2.Text = "0";
+            textBoxVisee2PC.Text = "0";
         }
     }
 }
