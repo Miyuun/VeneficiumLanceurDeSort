@@ -215,8 +215,11 @@ namespace WindowsFormsApp1
 
                 async Task UseDelay(int num, Image image)
                 {
+                    var pict = pictureBoxAnim1;
+                    Image lastImage = pict.Image;
                     await Task.Delay(num); // wait for 1 second
-                    pictureBoxAnim1.Image = image;
+                    if (Object.ReferenceEquals(lastImage, pict.Image))
+                        pict.Image = image;
                 }
 
                 character_1.MagicPower = magic;
@@ -230,7 +233,7 @@ namespace WindowsFormsApp1
                 "Remplacer le Protego",
                 MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        protegoPoint1.Text = character_2.ProtegoActive.Power.ToString();
+                        protegoPoint1.Text = character_1.ProtegoActive.Power.ToString();
                         if (character_1.ProtegoActive.CritLevel > 0)
                         {
                             rollresult.Text = "Le Protego érigé par " + character_1.Name + " est actif et possède " + character_1.ProtegoActive.Power + " PV." + (character_1.ProtegoActive.CritLevel == 2 ? " (critique)" : null);
@@ -315,8 +318,11 @@ namespace WindowsFormsApp1
 
                 async Task UseDelay(int num, Image image)
                 {
+                    var pict = pictureBoxAnim2;
+                    Image lastImage = pict.Image;
                     await Task.Delay(num); // wait for 1 second
-                    pictureBoxAnim2.Image = image;
+                    if (Object.ReferenceEquals(lastImage, pict.Image))
+                        pict.Image = image;
                 }
 
                 character_2.MagicPower = magic;
@@ -582,10 +588,14 @@ namespace WindowsFormsApp1
                 if ((string)comboBoxVisee1PC.SelectedItem == "Malus")
                     bonusviseepercent *= -1;
 
-                async Task UseDelay(int num, Image image, PictureBox pict)
+                async Task UseDelay(int num, Image image, PictureBox pict, int num2 = 0, Image image2 = null, PictureBox pict2 = null)
                 {
+                    Image lastImage = pict.Image;
                     await Task.Delay(num); // wait for 1 second
-                    pict.Image = image;
+                    if (Object.ReferenceEquals(lastImage, pict.Image))
+                        pict.Image = image;
+                    if (num2 != 0)
+                        UseDelay(num2, image2, pict2);
                 }
 
                 character_1.MagicPower = magic;
@@ -599,7 +609,7 @@ namespace WindowsFormsApp1
                 {
                     protegoresult = character_1.AttackProtego(spell, character_2);
                     protegoPoint2.Text = character_2.ProtegoActive.Power.ToString();
-                    if(character_1.ProtegoActive.Power > 0)
+                    if(character_1.ProtegoActive != null && character_1.ProtegoActive.Power > 0)
                     {
                         pictureBoxAnim1.Image = wizardspellinprotegoleft;
                         UseDelay(6000, wizardprotegostandleft, pictureBoxAnim1);
@@ -616,15 +626,13 @@ namespace WindowsFormsApp1
                     attackprotego1.Enabled = true;
                 else
                 {
-                    if (character_1.ProtegoActive.Power > 0)
+                    if (character_1.ProtegoActive != null && character_1.ProtegoActive.Power > 0)
                     {
-                        UseDelay(1700, wizardprotegostopright, pictureBoxAnim2);
-                        UseDelay(3090, wizardstandingright, pictureBoxAnim2);
+                        UseDelay(1700, wizardprotegostopright, pictureBoxAnim2, 1390, wizardstandingright, pictureBoxAnim2);
                     }
                     else
                     {
-                        UseDelay(1000, wizardprotegostopright, pictureBoxAnim2);
-                        UseDelay(2390, wizardstandingright, pictureBoxAnim2);
+                        UseDelay(1000, wizardprotegostopright, pictureBoxAnim2, 1390, wizardstandingright, pictureBoxAnim2);
                     }
                     attackprotego1.Enabled = false;
                 }
@@ -674,10 +682,14 @@ namespace WindowsFormsApp1
                 if ((string)comboBoxVisee2PC.SelectedItem == "Malus")
                     bonusviseepercent *= -1;
 
-                async Task UseDelay(int num, Image image, PictureBox pict)
+                async Task UseDelay(int num, Image image, PictureBox pict, int num2 = 0, Image image2 = null, PictureBox pict2 = null)
                 {
+                    Image lastImage = pict.Image;
                     await Task.Delay(num); // wait for 1 second
-                    pict.Image = image;
+                    if (Object.ReferenceEquals(lastImage,pict.Image))
+                        pict.Image = image;
+                    if (num2 != 0)
+                        UseDelay(num2, image2, pict2);
                 }
 
                 character_2.MagicPower = magic;
@@ -691,7 +703,7 @@ namespace WindowsFormsApp1
                 {
                     protegoresult = character_2.AttackProtego(spell, character_1);
                     protegoPoint1.Text = character_1.ProtegoActive.Power.ToString();
-                    if (character_2.ProtegoActive.Power > 0)
+                    if (character_2.ProtegoActive != null && character_2.ProtegoActive.Power > 0)
                     {
                         pictureBoxAnim2.Image = wizardspellinprotegoright;
                         UseDelay(6000, wizardprotegostandright, pictureBoxAnim2);
@@ -708,15 +720,13 @@ namespace WindowsFormsApp1
                     attackprotego2.Enabled = true;
                 else
                 {
-                    if (character_2.ProtegoActive.Power > 0)
+                    if (character_2.ProtegoActive != null && character_2.ProtegoActive.Power > 0)
                     {
-                        UseDelay(1700, wizardprotegostopleft, pictureBoxAnim1);
-                        UseDelay(3090, wizardstandingleft, pictureBoxAnim1);
+                        UseDelay(1700, wizardprotegostopleft, pictureBoxAnim1, 1390, wizardstandingleft, pictureBoxAnim1);
                     }
                     else
                     {
-                        UseDelay(1000, wizardprotegostopleft, pictureBoxAnim1);
-                        UseDelay(2390, wizardstandingleft, pictureBoxAnim1);
+                        UseDelay(1000, wizardprotegostopleft, pictureBoxAnim1, 1390, wizardstandingleft, pictureBoxAnim1);
                     }
                     attackprotego2.Enabled = false;
                 }
