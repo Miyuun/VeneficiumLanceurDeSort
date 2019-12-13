@@ -372,11 +372,11 @@ namespace WindowsFormsApp1
                         if (character_2.ProtegoActive.Power > 0)
                         {
                             pictureBoxAnim2.Image = wizardprotegostopright;
-                            UseDelay(2100, wizardstandingleft);
+                            UseDelay(2100, wizardstandingright);
                         }
                         else
                         {
-                            pictureBoxAnim2.Image = wizardstandingleft;
+                            pictureBoxAnim2.Image = wizardstandingright;
                         }
                     }
                     protegoPoint2.Text = character_2.ProtegoActive.Power.ToString();

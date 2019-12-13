@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="RA5HS0v.ico" />
+    <None Include="Resources\favicon.ico" />
     <Content Include="Resources\protego.png" />
     <None Include="Resources\wizardprotegoleft.gif" />
     <None Include="Resources\wizardprotegoright.gif" />
@@ -121,6 +122,7 @@
     <None Include="Resources\wizardprotegostandright.gif" />
     <None Include="Resources\wizardprotegostopleft.gif" />
     <None Include="Resources\wizardprotegostopright.gif" />
+    <None Include="Resources\title.jpg" />
     <Content Include="Resources\wizardspellinprotegoleft.gif" />
     <Content Include="Resources\wizardspellinprotegoright.gif" />
     <None Include="Resources\wizardspellleft.gif" />

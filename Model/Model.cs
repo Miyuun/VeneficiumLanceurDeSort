@@ -17,7 +17,7 @@ namespace Model
     public static class Model
     {
         static string html = string.Empty;
-        static string url = @"http://www.veneficium.org";
+        static string url = @"http://maleficium.forumactif.com";
         static string option = @"/memberlist?mode=lastvisit&order=DESC&submit=Ok&username=";
         static WebClient client = new WebClient();
         private static HttpClient httpClient = new HttpClient();
@@ -61,13 +61,15 @@ namespace Model
             document = new HtmlDocument();
             document.LoadHtml(html);
 
-            string characterName = document.DocumentNode.SelectSingleNode("//div[contains(@class, 'namePFIL')]/span/strong").InnerHtml;
+            string characterName = document.DocumentNode.SelectSingleNode("//div[contains(@class, 'avPFIL')]").InnerText;
+            var node = document.DocumentNode.SelectSingleNode("//div[contains(@class, 'boxRPG')]");
+            var count = node.Descendants().Count(); //.Where(n => regex.Match(n.InnerText).Success);
 
-            if (document.DocumentNode.SelectSingleNode("//div[contains(@class, 'rpg_fields')]") != null)
+            if (count > 20)
             {
-                string magic = document.DocumentNode.SelectSingleNode("//div[contains(@class, 'rpg_fields')]/span[contains(@class, 'gensmall')]").InnerHtml;
+                string magic = document.DocumentNode.SelectSingleNode("//div[contains(@class, 'boxRPG')]/span[contains(@class, 'gensmall')]").InnerHtml;
                 magic = magic.Substring(magic.IndexOf("(") + 1, magic.IndexOf("/") - 1);
-                string volonte = document.DocumentNode.SelectNodes("//div[contains(@class, 'rpg_fields')]/span[contains(@class, 'gensmall')]")[1].InnerHtml;
+                string volonte = document.DocumentNode.SelectNodes("//div[contains(@class, 'boxRPG')]/span[contains(@class, 'gensmall')]")[1].InnerHtml;
                 volonte = volonte.Substring(volonte.IndexOf("(") + 1, volonte.IndexOf("/") - 1);
                 return new CharacterSheet(characterName, Int32.Parse(magic), Int32.Parse(volonte));
             }
@@ -204,7 +206,7 @@ namespace Model
             var values = new Dictionary<string, string>
             {
                { "username", "Program" },
-               { "password", "programvenef2018" },
+               { "password", "programmalef2019" },
                { "autologin", "on" },
                { "redirect", "" },
                { "query", "" },
@@ -218,10 +220,10 @@ namespace Model
             var content = new FormUrlEncodedContent(values);
 
             httpClient = new HttpClient(handler);
-            HttpResponseMessage response = await httpClient.PostAsync("http://www.veneficium.org/login", content);
+            HttpResponseMessage response = await httpClient.PostAsync("http://maleficium.forumactif.com/login", content);
 
             var responseString = await response.Content.ReadAsStringAsync();
-            Uri uri = new Uri("http://www.veneficium.org/");
+            Uri uri = new Uri("http://maleficium.forumactif.com/");
             responseCookies = cookies.GetCookies(uri).Cast<Cookie>();
             
         }

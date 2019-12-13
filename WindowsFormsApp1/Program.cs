@@ -17,7 +17,7 @@ namespace WindowsFormsApp1
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Form1 f1 = new Form1();
-            f1.Text = "Lanceur de Sort - Veneficium";
+            f1.Text = "Maleficium - Logiciel de Duel";
             Application.Run(f1);
 
         }
