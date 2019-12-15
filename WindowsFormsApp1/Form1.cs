@@ -406,9 +406,11 @@ namespace WindowsFormsApp1
                 am2.Text = character_2.MagicPower.ToString();
                 amlabel2.Visible = true;
                 am2.Visible = true;
+                am2.Enabled = false;
                 will2.Text = character_2.WillPower.ToString();
                 willlabel2.Visible = true;
                 will2.Visible = true;
+                will2.Enabled = false;
                 roll2.Visible = true;
                 bonusamlabel2.Visible = true;
                 bonusam2.Text = "0";
@@ -475,9 +477,11 @@ namespace WindowsFormsApp1
                 am1.Text = character_1.MagicPower.ToString();
                 amlabel1.Visible = true;
                 am1.Visible = true;
+                am1.Enabled = false;
                 will1.Text = character_1.WillPower.ToString();
                 willlabel1.Visible = true;
                 will1.Visible = true;
+                will1.Enabled = false;
                 roll1.Visible = true;
                 bonusamlabel1.Visible = true;
                 bonusam1.Text = "0";
@@ -805,6 +809,276 @@ namespace WindowsFormsApp1
             protegoPoint2.Text = "0";
             textBoxVisee2.Text = "0";
             textBoxVisee2PC.Text = "0";
+        }
+
+        private void Custom2_Click(object sender, EventArgs e)
+        {
+            loaded2.Visible = true;
+            loaded2.ForeColor = Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            loaded2.Text = "PNJ";
+            character_2 = new CharacterSheet("PNJ", 0, 0); 
+            character2.Text = character_2.Name;
+            am2.Text = character_2.MagicPower.ToString();
+            amlabel2.Visible = true;
+            am2.Visible = true;
+            am2.Enabled = true;
+            will2.Text = character_2.WillPower.ToString();
+            willlabel2.Visible = true;
+            will2.Visible = true;
+            will2.Enabled = true;
+            roll2.Visible = true;
+            bonusamlabel2.Visible = true;
+            bonusam2.Text = "0";
+            bonusam2.Visible = true;
+            bonuswilllabel2.Visible = true;
+            bonuswill2.Text = "0";
+            bonuswill2.Visible = true;
+            protego2.Visible = true;
+            comboboxwillpercent2.SelectedItem = "Bonus";
+            comboboxampercent2.SelectedItem = "Bonus";
+            comboboxwill2.SelectedItem = "Bonus";
+            comboboxam2.SelectedItem = "Bonus";
+            comboBoxVisee2.SelectedItem = "Bonus";
+            comboBoxVisee2PC.SelectedItem = "Bonus";
+            comboboxwillpercent2.Visible = true;
+            comboboxampercent2.Visible = true;
+            comboboxwill2.Visible = true;
+            comboboxam2.Visible = true;
+            bonusampercent2.Visible = true;
+            bonusampercent2.Text = "0";
+            bonuswillpercent2.Visible = true;
+            bonuswillpercent2.Text = "0";
+            protegoPoint2.Text = "0";
+            bonusamlabelpercent2.Visible = true;
+            bonuswilllabelpercent2.Visible = true;
+            label3.Visible = true;
+            label4.Visible = true;
+            protegoPoint2.Visible = true;
+            pictureBox2.Visible = true;
+            accuracy.Visible = true;
+            accuracy2.Visible = true;
+            power.Visible = true;
+            power2.Visible = true;
+            attackprotego2.Visible = true;
+            modifyprotego2.Visible = true;
+            removeprotego2.Visible = true;
+            powerafterroll.Visible = true;
+            powerafterprotego2.Visible = true;
+            textBoxVisee2.Visible = true;
+            textBoxVisee2PC.Visible = true;
+            comboBoxVisee2.Visible = true;
+            comboBoxVisee2PC.Visible = true;
+            labelVisee2.Visible = true;
+            labelVisee2PC.Visible = true;
+            labelVisee2PC1.Visible = true;
+            textBoxVisee2.Text = "0";
+            textBoxVisee2PC.Text = "0";
+            buttonModif2.Visible = true;
+            pictureBoxAnim2.Visible = true;
+        }
+
+        private void Custom1_Click(object sender, EventArgs e)
+        {
+            loaded1.Visible = true;
+            loaded1.ForeColor = Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            loaded1.Text = "PNJ";
+            character_1 = new CharacterSheet("PNJ", 0, 0);
+            character1.Text = character_1.Name;
+            am1.Text = character_1.MagicPower.ToString();
+            amlabel1.Visible = true;
+            am1.Visible = true;
+            am1.Enabled = true;
+            will1.Text = character_1.WillPower.ToString();
+            willlabel1.Visible = true;
+            will1.Visible = true;
+            will1.Enabled = true;
+            roll1.Visible = true;
+            bonusamlabel1.Visible = true;
+            bonusam1.Text = "0";
+            bonusam1.Visible = true;
+            bonuswilllabel1.Visible = true;
+            bonuswill1.Text = "0";
+            bonuswill1.Visible = true;
+            protego1.Visible = true;
+            comboboxwillpercent1.SelectedItem = "Bonus";
+            comboboxampercent1.SelectedItem = "Bonus";
+            comboboxwill1.SelectedItem = "Bonus";
+            comboboxam1.SelectedItem = "Bonus";
+            comboBoxVisee1.SelectedItem = "Bonus";
+            comboBoxVisee1PC.SelectedItem = "Bonus";
+            comboboxwillpercent1.Visible = true;
+            comboboxampercent1.Visible = true;
+            comboboxwill1.Visible = true;
+            comboboxam1.Visible = true;
+            bonusampercent1.Visible = true;
+            bonusampercent1.Text = "0";
+            bonuswillpercent1.Visible = true;
+            bonuswillpercent1.Text = "0";
+            protegoPoint1.Text = "0";
+            bonusamlabelpercent1.Visible = true;
+            bonuswilllabelpercent1.Visible = true;
+            label5.Visible = true;
+            label6.Visible = true;
+            protegoPoint1.Visible = true;
+            pictureBox3.Visible = true;
+            accuracy.Visible = true;
+            accuracy1.Visible = true;
+            power.Visible = true;
+            power1.Visible = true;
+            attackprotego1.Visible = true;
+            modifyprotego1.Visible = true;
+            removeprotego1.Visible = true;
+            powerafterroll.Visible = true;
+            powerafterprotego1.Visible = true;
+            textBoxVisee1.Visible = true;
+            textBoxVisee1PC.Visible = true;
+            comboBoxVisee1.Visible = true;
+            comboBoxVisee1PC.Visible = true;
+            labelVisee1.Visible = true;
+            labelVisee1PC.Visible = true;
+            labelVisee1PC1.Visible = true;
+            textBoxVisee1.Text = "0";
+            textBoxVisee1PC.Text = "0";
+            buttonModif1.Visible = true;
+            pictureBoxAnim1.Visible = true;
+        }
+
+        private void Am1_Leave(object sender, EventArgs e)
+        {
+            int customAm = 0;
+            if (am1.Text != "")
+            {
+                Int32.TryParse(am1.Text, out customAm);
+            }
+            else
+            {
+                am1.Text = "0";
+            }
+            int customWill = 0;
+            if (will1.Text != "")
+            {
+                Int32.TryParse(will1.Text, out customWill);
+            }
+            else
+            {
+                will1.Text = "0";
+            }
+            character_1 = new CharacterSheet(character_1.Name, customAm, customWill);
+        }
+
+        private void Will1_Leave(object sender, EventArgs e)
+        {
+            int customAm = 0;
+            if (am1.Text != "")
+            {
+                Int32.TryParse(am1.Text, out customAm);
+            }
+            else
+            {
+                am1.Text = "0";
+            }
+            int customWill = 0;
+            if (will1.Text != "")
+            {
+                Int32.TryParse(will1.Text, out customWill);
+            }
+            else
+            {
+                will1.Text = "0";
+            }
+            character_1 = new CharacterSheet(character_1.Name, customAm, customWill);
+        }
+
+        private void Am2_Leave(object sender, EventArgs e)
+        {
+            int customAm = 0;
+            if (am2.Text != "")
+            {
+                Int32.TryParse(am2.Text, out customAm);
+            }
+            else
+            {
+                am2.Text = "0";
+            }
+            int customWill = 0;
+            if (will2.Text != "")
+            {
+                Int32.TryParse(will2.Text, out customWill);
+            }
+            else
+            {
+                will2.Text = "0";
+            }
+            character_2 = new CharacterSheet(character_2.Name, customAm, customWill);
+        }
+
+        private void Will2_Leave(object sender, EventArgs e)
+        {
+            int customAm = 0;
+            if (am2.Text != "")
+            {
+                Int32.TryParse(am2.Text, out customAm);
+            }
+            else
+            {
+                am2.Text = "0";
+            }
+            int customWill = 0;
+            if (will2.Text != "")
+            {
+                Int32.TryParse(will2.Text, out customWill);
+            }
+            else
+            {
+                will2.Text = "0";
+            }
+            character_2 = new CharacterSheet(character_2.Name, customAm, customWill);
+        }
+
+        private void Character2_Leave(object sender, EventArgs e)
+        {
+            int customAm = 0;
+            if (am2.Text != "")
+            {
+                Int32.TryParse(am2.Text, out customAm);
+            }
+            else
+            {
+                am2.Text = "0";
+            }
+            int customWill = 0;
+            if (will2.Text != "")
+            {
+                Int32.TryParse(will2.Text, out customWill);
+            }
+            else
+            {
+                will2.Text = "0";
+            }
+            character_2 = new CharacterSheet(character2.Text, customAm, customWill);
+        }
+
+        private void Character1_Leave(object sender, EventArgs e)
+        {
+            int customAm = 0;
+            if (am1.Text != "")
+            {
+                Int32.TryParse(am1.Text, out customAm);
+            }
+            else
+            {
+                am1.Text = "0";
+            }
+            int customWill = 0;
+            if (will1.Text != "")
+            {
+                Int32.TryParse(will1.Text, out customWill);
+            }
+            else
+            {
+                will1.Text = "0";
+            }
+            character_1 = new CharacterSheet(character1.Text, customAm, customWill);
         }
     }
 }

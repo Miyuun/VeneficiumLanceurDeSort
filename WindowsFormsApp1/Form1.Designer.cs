@@ -115,15 +115,17 @@
             this.removeprotego2 = new System.Windows.Forms.Button();
             this.modifyprotego2 = new System.Windows.Forms.Button();
             this.protegoPoint2 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel9 = new System.Windows.Forms.Panel();
             this.removeprotego1 = new System.Windows.Forms.Button();
             this.modifyprotego1 = new System.Windows.Forms.Button();
             this.protegoPoint1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxAnim1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxAnim2 = new System.Windows.Forms.PictureBox();
+            this.Custom1 = new System.Windows.Forms.Button();
+            this.Custom2 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -131,10 +133,10 @@
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAnim1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAnim2)).BeginInit();
             this.SuspendLayout();
@@ -147,6 +149,7 @@
             this.panel2.Controls.Add(this.powerafterroll);
             this.panel2.Controls.Add(this.attackprotego2);
             this.panel2.Controls.Add(this.attackprotego1);
+            this.panel2.Controls.Add(this.loaded2);
             this.panel2.Controls.Add(this.power);
             this.panel2.Controls.Add(this.power2);
             this.panel2.Controls.Add(this.accuracy2);
@@ -154,6 +157,7 @@
             this.panel2.Controls.Add(this.power1);
             this.panel2.Controls.Add(this.accuracy1);
             this.panel2.Controls.Add(this.panel4);
+            this.panel2.Controls.Add(this.loaded1);
             this.panel2.Location = new System.Drawing.Point(10, 223);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
@@ -162,6 +166,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.Custom1);
             this.panel3.Controls.Add(this.buttonModif1);
             this.panel3.Controls.Add(this.labelVisee1PC1);
             this.panel3.Controls.Add(this.labelVisee1PC);
@@ -182,7 +187,6 @@
             this.panel3.Controls.Add(this.roll1);
             this.panel3.Controls.Add(this.will1);
             this.panel3.Controls.Add(this.am1);
-            this.panel3.Controls.Add(this.loaded1);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.character1);
             this.panel3.Location = new System.Drawing.Point(2, 2);
@@ -583,6 +587,7 @@
             this.will1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.will1.Visible = false;
             this.will1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.will1_KeyPress);
+            this.will1.Leave += new System.EventHandler(this.Will1_Leave);
             // 
             // am1
             // 
@@ -595,13 +600,14 @@
             this.am1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.am1.Visible = false;
             this.am1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.am1_KeyPress);
+            this.am1.Leave += new System.EventHandler(this.Am1_Leave);
             // 
             // loaded1
             // 
             this.loaded1.AutoSize = true;
             this.loaded1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loaded1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.loaded1.Location = new System.Drawing.Point(183, 18);
+            this.loaded1.Location = new System.Drawing.Point(256, 23);
             this.loaded1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.loaded1.Name = "loaded1";
             this.loaded1.Size = new System.Drawing.Size(62, 13);
@@ -630,6 +636,7 @@
             this.character1.Size = new System.Drawing.Size(106, 20);
             this.character1.TabIndex = 0;
             this.character1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.character1.Leave += new System.EventHandler(this.Character1_Leave);
             // 
             // powerafterprotego2
             // 
@@ -750,13 +757,13 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.Custom2);
             this.panel4.Controls.Add(this.buttonModif2);
             this.panel4.Controls.Add(this.labelVisee2PC1);
             this.panel4.Controls.Add(this.button1);
             this.panel4.Controls.Add(this.labelVisee2PC);
             this.panel4.Controls.Add(this.protego2);
             this.panel4.Controls.Add(this.comboBoxVisee2PC);
-            this.panel4.Controls.Add(this.loaded2);
             this.panel4.Controls.Add(this.textBoxVisee2PC);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.textBoxVisee2);
@@ -863,7 +870,7 @@
             this.loaded2.AutoSize = true;
             this.loaded2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loaded2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.loaded2.Location = new System.Drawing.Point(14, 20);
+            this.loaded2.Location = new System.Drawing.Point(385, 22);
             this.loaded2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.loaded2.Name = "loaded2";
             this.loaded2.Size = new System.Drawing.Size(62, 13);
@@ -1188,6 +1195,7 @@
             this.will2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.will2.Visible = false;
             this.will2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.will2_KeyPress);
+            this.will2.Leave += new System.EventHandler(this.Will2_Leave);
             // 
             // am2
             // 
@@ -1200,6 +1208,7 @@
             this.am2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.am2.Visible = false;
             this.am2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.am2_KeyPress);
+            this.am2.Leave += new System.EventHandler(this.Am2_Leave);
             // 
             // label2
             // 
@@ -1222,6 +1231,7 @@
             this.character2.Size = new System.Drawing.Size(106, 20);
             this.character2.TabIndex = 1;
             this.character2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.character2.Leave += new System.EventHandler(this.Character2_Leave);
             // 
             // rollresult
             // 
@@ -1292,6 +1302,18 @@
             this.protegoPoint2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.protegoPoint2.Visible = false;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::WindowsFormsApp1.Properties.Resources.protego;
+            this.pictureBox2.Location = new System.Drawing.Point(10, 141);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(70, 72);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 24;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Visible = false;
+            // 
             // panel9
             // 
             this.panel9.Controls.Add(this.removeprotego1);
@@ -1339,18 +1361,6 @@
             this.protegoPoint1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.protegoPoint1.Visible = false;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.Image = global::WindowsFormsApp1.Properties.Resources.title;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(99, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(524, 153);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 29;
-            this.pictureBox1.TabStop = false;
-            // 
             // pictureBox3
             // 
             this.pictureBox3.Image = global::WindowsFormsApp1.Properties.Resources.protego;
@@ -1363,17 +1373,17 @@
             this.pictureBox3.TabStop = false;
             this.pictureBox3.Visible = false;
             // 
-            // pictureBox2
+            // pictureBox1
             // 
-            this.pictureBox2.Image = global::WindowsFormsApp1.Properties.Resources.protego;
-            this.pictureBox2.Location = new System.Drawing.Point(10, 141);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(70, 72);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 24;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Visible = false;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox1.Image = global::WindowsFormsApp1.Properties.Resources.title;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(99, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(524, 153);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 29;
+            this.pictureBox1.TabStop = false;
             // 
             // pictureBoxAnim1
             // 
@@ -1397,6 +1407,28 @@
             this.pictureBoxAnim2.TabIndex = 28;
             this.pictureBoxAnim2.TabStop = false;
             this.pictureBoxAnim2.Visible = false;
+            // 
+            // Custom1
+            // 
+            this.Custom1.Location = new System.Drawing.Point(182, 14);
+            this.Custom1.Margin = new System.Windows.Forms.Padding(2);
+            this.Custom1.Name = "Custom1";
+            this.Custom1.Size = new System.Drawing.Size(59, 24);
+            this.Custom1.TabIndex = 36;
+            this.Custom1.Text = "PNJ";
+            this.Custom1.UseVisualStyleBackColor = true;
+            this.Custom1.Click += new System.EventHandler(this.Custom1_Click);
+            // 
+            // Custom2
+            // 
+            this.Custom2.Location = new System.Drawing.Point(14, 15);
+            this.Custom2.Margin = new System.Windows.Forms.Padding(2);
+            this.Custom2.Name = "Custom2";
+            this.Custom2.Size = new System.Drawing.Size(59, 24);
+            this.Custom2.TabIndex = 37;
+            this.Custom2.Text = "PNJ";
+            this.Custom2.UseVisualStyleBackColor = true;
+            this.Custom2.Click += new System.EventHandler(this.Custom2_Click);
             // 
             // Form1
             // 
@@ -1429,10 +1461,10 @@
             this.panel6.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAnim1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAnim2)).EndInit();
             this.ResumeLayout(false);
@@ -1535,6 +1567,8 @@
         private System.Windows.Forms.PictureBox pictureBoxAnim1;
         private System.Windows.Forms.PictureBox pictureBoxAnim2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button Custom1;
+        private System.Windows.Forms.Button Custom2;
     }
 }
 
